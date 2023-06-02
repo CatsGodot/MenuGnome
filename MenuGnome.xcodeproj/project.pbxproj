@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		935221D22A2960E900BB1CEB /* MenuGnome.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 935221D02A2960E900BB1CEB /* MenuGnome.cpp */; };
+		935221DB2A296F3900BB1CEB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 935221D72A29664F00BB1CEB /* main.cpp */; };
+		935221DC2A296F3D00BB1CEB /* TestMenus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 935221D92A29665400BB1CEB /* TestMenus.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -137,6 +139,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				935221DB2A296F3900BB1CEB /* main.cpp in Sources */,
+				935221DC2A296F3D00BB1CEB /* TestMenus.cpp in Sources */,
 				935221D22A2960E900BB1CEB /* MenuGnome.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
