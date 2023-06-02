@@ -27,10 +27,19 @@ class MenuDeckGnome
 		MenuDeckGnome();
 		~MenuDeckGnome();
 		
-	protected:
 		void addMenuToDeck( MenuGnome *menu );
+		void setMenu( int menuID );
+		
+		void print( void );
+		
+		int run( void );
+		
+	protected:
+		const char *presentUserChoice( void );
+		int reactToUserChoice( void );
 	
-		MenuGnome		*menus;
+		MenuGnome		*menus,
+						*current_menu;
 		int				num_menus;
 		
 		char			szUserChoice[kuMaxLenUserChoice];
@@ -38,20 +47,35 @@ class MenuDeckGnome
 
 //---------------------------------------------------------------------------------------
 
+struct MenuGnome_UserChoice;
 class MenuGnome
 {
 	public:
-		MenuGnome();
+		MenuGnome( int menuID );
 		~MenuGnome();
 		
-		virtual void createMenu( MenuDeckGnome *deck );
-		virtual int reactToMenuChoice( const char szUserChoice[] );
+		virtual void createMenu( MenuDeckGnome *deck ) = 0;
+		virtual void addUserChoice( MenuGnome_UserChoice *userChoice );
+		virtual int reactToUserChoice( const char szUserChoice[] );
+		
+		void print( void );
 		
 	protected:
-		char 				*screen;
-		int					id;
+		char 					*screen;
+		MenuGnome_UserChoice	*choices;
+		int						num_choices,
+								id;
 		
-		MenuGnome			*next;
+		MenuGnome				*next;
+};
+
+//---------------------------------------------------------------------------------------
+
+struct MenuGnome_UserChoice
+{
+	char					user_choice;
+	char					*menu_option;
+	int						action_value;
 };
 
 //---------------------------------------------------------------------------------------
