@@ -16,6 +16,26 @@
 
 //---------------------------------------------------------------------------------------
 
+class TestMenu_Main : public MenuGnome
+{
+	public :
+		TestMenu_Main();
+	
+		virtual void createMenu( MenuDeckGnome *deck );
+		virtual int reactToUserChoice( const char szUserChoice[] );
+};
+
+//---------------------------------------------------------------------------------------
+
+class TestMenu_Inner : public MenuGnome
+{
+	public :
+		TestMenu_Inner();
+		
+		virtual void createMenu( MenuDeckGnome *deck );
+		virtual int reactToUserChoice( const char szUserChoice[] );
+};
+
 //---------------------------------------------------------------------------------------
 
 #endif /* TestMenus_hpp */
