@@ -21,8 +21,7 @@ class TestMenu_Main : public MenuGnome
 	public :
 		TestMenu_Main();
 	
-		virtual void createMenu( MenuDeckGnome *deck );
-		virtual int reactToUserChoice( const char szUserChoice[] );
+		virtual void createMenu( void );
 };
 
 //---------------------------------------------------------------------------------------
@@ -32,8 +31,7 @@ class TestMenu_Inner : public MenuGnome
 	public :
 		TestMenu_Inner();
 		
-		virtual void createMenu( MenuDeckGnome *deck );
-		virtual int reactToUserChoice( const char szUserChoice[] );
+		virtual void createMenu( void );
 };
 
 //---------------------------------------------------------------------------------------
