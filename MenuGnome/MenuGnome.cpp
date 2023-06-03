@@ -70,6 +70,7 @@ void MenuDeckGnome::addMenuToDeck( MenuGnome *menu )
 	MenuGnome				*old_next = this->menus;
 	
 	menu->createMenu();
+	menu->next = NULL;
 	
 	if ( NULL == old_next )
 		{
@@ -125,7 +126,8 @@ const char *MenuDeckGnome::presentUserPrompt( char szUserChoice[] )
 		printf( "\n" );
 		printf( "%s", this->current_menu->user_prompt );
 		
-		fgets( this->user_choice, sizeof(this->user_choice), stdin );
+		while ( NULL == fgets( this->user_choice, sizeof(this->user_choice), stdin ) ) ;
+		
 		return( this->user_choice );
 		}
 		
@@ -181,6 +183,8 @@ MenuGnome::~MenuGnome()
 void MenuGnome::addUserChoice( MenuGnome_UserChoice *userChoice )
 {
 	MenuGnome_UserChoice				*old_next = this->choices;
+	
+	userChoice->next = NULL;
 	
 	if ( NULL == old_next )
 		{
