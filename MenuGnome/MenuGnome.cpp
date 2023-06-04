@@ -145,6 +145,21 @@ int MenuDeckGnome::reactToUserChoice( void )
 }
 
 //---------------------------------------------------------------------------------------
+
+void MenuDeckGnome::go( MenuGnomeActionDelegate *delegate )
+{
+	int							user_action;
+	bool						bKeepRunning = true;
+	
+	while ( bKeepRunning )
+		{
+		user_action = this->run();
+		bKeepRunning = delegate->handleUserAction( user_action );
+		printf( "\n" );
+		}
+}
+
+//---------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------
 
 MenuGnome::MenuGnome( int menuID, const char szTitle[], const char userPrompt[] )
@@ -196,6 +211,16 @@ void MenuGnome::addUserChoice( MenuGnome_UserChoice *userChoice )
 		old_next = old_next->next;
 		
 	old_next->next = userChoice;
+}
+
+//---------------------------------------------------------------------------------------
+
+void MenuGnome::addNewUserChoice( int nActionValue, 
+										const char szMenuOption[],
+										const char szMenuOptionFull[] )
+{
+	this->addUserChoice( this->createUserChoice(nActionValue, szMenuOption, 
+													szMenuOptionFull) );
 }
 
 //---------------------------------------------------------------------------------------
@@ -286,6 +311,40 @@ void MenuGnome::print( void )
 int MenuGnome::menuID( void )
 {
 	return( this->menu_id );
+}
+
+//---------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
+
+bool MenuGnomeActionDelegate::handleUserAction( int userActionValue )
+{
+	return( this->doDefaultUserAction(userActionValue) );
+}
+
+//---------------------------------------------------------------------------------------
+
+bool MenuGnomeActionDelegate::doDefaultUserAction( int userActionValue )
+{
+	switch( userActionValue )
+		{
+		case knMenuGnome_InvalidChoice:
+			{
+			printf("\n\7Invalid user choice detected!\n");
+			break;
+			}
+			
+		case knMenuGnome_EmptyChoice:
+			{
+			break;
+			}
+			
+		default:
+			{
+			printf("\n\7Undefined action value (%d) requested\n", userActionValue);
+			}
+		}
+		
+	return( true );
 }
 
 //---------------------------------------------------------------------------------------

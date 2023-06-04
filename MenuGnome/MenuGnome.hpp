@@ -22,6 +22,7 @@
 //---------------------------------------------------------------------------------------
 
 class MenuGnome;
+class MenuGnomeActionDelegate;
 class MenuDeckGnome
 {
 	public:
@@ -34,6 +35,8 @@ class MenuDeckGnome
 		void print( void );
 		
 		int run( void );
+		
+		virtual void go( MenuGnomeActionDelegate *delegate );
 		
 	protected:
 		const char *presentUserPrompt( char szUserChoice[] );
@@ -56,6 +59,9 @@ class MenuGnome
 		
 		virtual void createMenu( void ) = 0;
 		virtual void addUserChoice( MenuGnome_UserChoice *userChoice );
+		virtual void addNewUserChoice( int nActionValue, 
+											const char szMenuOption[],
+											const char szMenuOptionFull[] );
 		void addEmptyUserChoice( void );
 		virtual int reactToUserChoice( const char szUserChoice[] );
 		
@@ -87,6 +93,17 @@ struct MenuGnome_UserChoice
 	int						action_value;
 	
 	MenuGnome_UserChoice	*next;
+};
+
+//---------------------------------------------------------------------------------------
+
+class MenuGnomeActionDelegate
+{
+	protected:
+		virtual bool handleUserAction( int userActionValue );
+		virtual bool doDefaultUserAction( int userActionValue );
+		
+	friend class MenuDeckGnome;
 };
 
 //---------------------------------------------------------------------------------------
