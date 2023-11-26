@@ -20,7 +20,7 @@ int main(int argc, const char * argv[])
 	TestMenu_Main				*main_menu = new TestMenu_Main();
 	TestMenu_Inner				*inner_menu = new TestMenu_Inner();
 	
-	int							user_action;
+	int							user_action;  
 	
 	menu_deck.addMenuToDeck(main_menu);
 	menu_deck.addMenuToDeck(inner_menu);
